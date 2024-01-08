@@ -1,98 +1,106 @@
-#include <iostream>
-#include <cmath>
+#include "include/ManagerClienti.h"
+#include "include/AbonamentSimplu.h"
+#include "include/AbonamentPremium.h"
+#include "include/AbonamentStudent.h"
+#include "include/MyExceptions.h"
+#include "include/Abonament.h"
+#include "include/Client.h"
+#include <limits>
 
-template <typename T>
-class Complex {
-public:
+int main()
+{
+    auto manager = ManagerClienti::getInstance();
 
-    Complex();
-    Complex(T real, T imag);
+    int optiune;
+    do
+    {
+        manager->afiseazaMeniu();
+        std::cin >> optiune;
 
-    // Member functions
-    void display() const;
 
-    // Operator overloads
-    Complex<T> operator+(const Complex<T>& other) const;
-    Complex<T> operator+(T scalar) const;
+        for (int i=0; i<10; i++)
+            std::cout<<std::endl;
 
-    // functie prieten
-    friend std::ostream& operator<<(std::ostream& stream, const Complex<T>& c) {
-        stream << c.real;
-        if (c.imag > 0) stream << " + ";
-        stream << c.imag << "i" << "\n";
-        return stream;
+        try
+        {
+            if (std::cin.fail())
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Va rugam introduceti un numar valabil!" << std::endl;
+                continue;
+            }
+            if (optiune<1 || optiune > 7)
+            {
+                std::cout<<"Introduceti va rugam o optiune valida!"<<std::endl;
+                continue;
+            }
+
+            switch (optiune)
+            {
+            case 1:
+            {
+                manager->adaugaClient();
+                break;
+            }
+
+            case 2:
+            {
+                std::cout << "Introduceti numele clientului de sters: ";
+                std::string numeClient;
+                std::cin >> numeClient;
+                manager->stergeClient(numeClient);
+                break;
+            }
+
+            case 3:
+                manager->listeazaClienti();
+                break;
+
+            case 4:
+            {
+                std::cout << "Introduceti numele clientului pentru schimbare abonament: ";
+                std::string numeClient;
+                std::cin >> numeClient;
+
+                std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student): ";
+                int tipAbonament;
+                std::cin >> tipAbonament;
+
+                manager->schimbaAbonament(numeClient, tipAbonament);
+                break;
+            }
+
+            case 5:
+            {
+                manager->afiseazaStatistica();
+                break;
+            }
+
+            case 6:
+                manager->reseteazaProgram();
+                break;
+            case 7:
+                std::cout << "Programul se inchide.\n";
+                break;
+
+            default:
+                std::cout << "Optiune invalida. Va rugam alegeti o optiune valida.\n";
+                break;
+            }
+        }
+        catch (const ExceptieGenerala& e)
+        {
+            std::cerr << "\n\nEroare: " << e.what() << std::endl;
+            continue;
+        }
+
+        for (int i=0; i<10; i++)
+            std::cout<<std::endl;
+
     }
-
-    friend std::istream& operator>>(std::istream& stream, Complex<T>& c) {
-        std::cout << "real=";
-        stream >> c.real;
-        std::cout << "imag=";
-        stream >> c.imag;
-        return stream;
-    }
-
-    template <typename U>
-    friend Complex<U> operator+(U scalar, const Complex<U>& c);
-
-    friend double module(const Complex<T>& z) {
-        return std::sqrt(z.real * z.real + z.imag * z.imag);
-    }
-
-private:
-    T real;
-    T imag;
-};
-
-// constructorii
-template <typename T>
-Complex<T>::Complex() : real(1), imag(0) {}
-
-template <typename T>
-Complex<T>::Complex(T pr, T pi) : real(pr), imag(pi) {}
-
-
-template <typename T>
-void Complex<T>::display() const {
-    std::cout << real;
-    if (imag > 0) std::cout << " + ";
-    std::cout << imag << " i" << "\n";
-}
-
-// overload pe operatori
-template <typename T>
-Complex<T> Complex<T>::operator+(const Complex<T>& z) const {
-    return Complex<T>(real + z.real, imag + z.imag);
-}
-
-template <typename T>
-Complex<T> Complex<T>::operator+(T scalar) const {
-    return Complex<T>(real + scalar, imag);
-}
-
-// functie prieten
-template <typename U>
-Complex<U> operator+(U scalar, const Complex<U>& c) {
-    return Complex<U>(scalar + c.real, c.imag);
-}
-
-int main() {
-    Complex<double> z(4, 5), z1(1,3);
-    // std::cin >> z1;
-    std::cout << z1;
-    z.display();
-    std::cout << z;
-
-    z = 1.0 + z;
-    z.display();
-
-    z = z + 3.0;
-    z.display();
-
-    std::cout << module(z) << "\n";
-
-    Complex<double> sum;
-    sum = z1 + z;
-    std::cout << z1 + z << sum;
+    while (optiune != 7);
 
     return 0;
 }
