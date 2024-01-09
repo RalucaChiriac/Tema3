@@ -14,8 +14,7 @@
 
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
 
-ManagerClienti::ManagerClienti() {
-    abonamentManager = std::make_unique<AbonamentManager>();
+ManagerClienti::ManagerClienti(): abonamentManager(std::make_unique<AbonamentManager>())  {
     AbonamentFactory* factory = new AbonamentFactory();
     abonamentManager->setAbonamentFactory(factory);
 }
