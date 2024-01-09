@@ -5,6 +5,7 @@
 #include "../include/AbonamentSimplu.h"
 #include "../include/AbonamentPremium.h"
 #include "../include/AbonamentStudent.h"
+#include "../include/AbonamentPersoanaCuDizabilitati.h"
 
 
 AbonamentManager::AbonamentManager() : abonamentFactory(nullptr) {}
@@ -20,20 +21,20 @@ void AbonamentManager::afiseazaStatistica() const {
     std::cout << "Numar de abonamente Simple: " << AbonamentSimplu::getNumarAbonamenteSimplu() << '\n';
     std::cout << "Numar de abonamente Premium: " << AbonamentPremium::getNumarAbonamentePremium() << '\n';
     std::cout << "Numar de abonamente de Student: " << AbonamentStudent::getNumarAbonamenteStudent() << '\n';
+    std::cout << "Numar de abonamente de Persoane cu Dizabilitati: " << AbonamentPersoanaCuDizabilitati::getNumarAbonamentePersoaneCuDizabilitati() << '\n';
 }
 
 Abonament* AbonamentManager::setAbonament(int tipAbonament, int codClient) {
     if (abonamentFactory) {
         return abonamentFactory->createAbonament(tipAbonament, codClient);
     } else {
-        // Handle the case where the factory is not set
-        throw std::runtime_error("AbonamentFactory not set");
+        throw std::runtime_error("AbonamentFactory nesetat");
     }
 }
 
 Abonament* AbonamentManager::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
     if (abonamentFactory) {
-        std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student): ";
+        std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student / 4. Persoana cu handicap): ";
         int tipAbonament;
         std::cin >> tipAbonament;
 

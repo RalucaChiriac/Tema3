@@ -100,6 +100,7 @@ src/Client.cpp
 src/ManagerClienti.cpp 
 src/AbonamentManager.cpp
 src/AbonamentFactory.cpp
+src/AbonamentPersoanaCuDizabilitati.cpp
 )
 
 ###############################################################################

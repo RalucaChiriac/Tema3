@@ -3,6 +3,7 @@
 #include "../include/AbonamentPremium.h"
 #include "../include/AbonamentSimplu.h"
 #include "../include/AbonamentStudent.h"
+#include "../include/AbonamentPersoanaCuDizabilitati.h"
 #include "../include/Client.h"
 #include "../include/MyExceptions.h"
 #include <iostream>
@@ -11,9 +12,10 @@
 #include "../include/AbonamentManager.h"
 #include "../include/AbonamentFactory.h"
 
+// Initialize the static member variable with nullptr
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
 
-ManagerClienti::ManagerClienti(): abonamentFactory(std::make_shared<AbonamentFactory>()), abonamentManager(std::make_unique<AbonamentManager>()) {
+ManagerClienti::ManagerClienti(): abonamentManager(std::make_unique<AbonamentManager>()), abonamentFactory(std::make_shared<AbonamentFactory>()) {
     abonamentManager->setAbonamentFactory(abonamentFactory);
 }
 
@@ -144,4 +146,8 @@ void ManagerClienti::reseteazaProgram()
 
 void ManagerClienti::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
     abonamentManager->setAbonamentFactory(factory);
+}
+
+void ManagerClienti::setAbonamentManager(std::shared_ptr<AbonamentManager> manager) {
+    abonamentManager = manager;
 }
