@@ -34,7 +34,6 @@ public:
 
     static std::shared_ptr<ManagerClienti> getInstance();
     void setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory);
-    void setAbonamentManager(std::shared_ptr<AbonamentManager> manager);
     Abonament* setAbonament(int tipAbonament, int codClient);
     Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);
 };
