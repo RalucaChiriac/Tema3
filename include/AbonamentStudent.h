@@ -6,7 +6,6 @@
 class AbonamentStudent : public Abonament {
 private:
     int numarLegitimatie;
-    static int numarAbonamenteStudent;
 
 public:
     AbonamentStudent(float baza, int idClient, int numarLegitimatie);
@@ -18,7 +17,6 @@ public:
     void calculeazaPret(float vechime) override;
     void afisareTip() const override;
     Abonament* clone() const override;
-
     static int getNumarAbonamenteStudent();
 
 

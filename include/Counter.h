@@ -28,6 +28,7 @@ public:
     }
 };
 
+// Initialize the count to 0
 template <typename T>
 int Counter<T>::count = 0;
 

@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include "MyExceptions.h"
+#include "Counter.h"
 #include <memory>
-
 
 class ManagerClienti;
 
@@ -14,7 +14,6 @@ protected:
     int idClient;
     std::weak_ptr<ManagerClienti> manager;
     float pret;
-    static int numarAbonamente;
     virtual void afisareTip() const = 0;
     virtual void afisareDetalii() const = 0;
 

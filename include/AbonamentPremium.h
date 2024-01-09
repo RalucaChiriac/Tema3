@@ -6,10 +6,6 @@
 class AbonamentPremium : public Abonament {
 private:
     bool serviciuSupport;
-    static int numarAbonamentePremium;
-
-protected:
-    void afisareTip() const override;
 
 public:
     AbonamentPremium(float baza, int idClient, bool serviciuSupport);
@@ -18,9 +14,9 @@ public:
     ~AbonamentPremium() override;
 
     void afisareDetalii() const override;
+    void afisareTip() const override;
     void calculeazaPret(float vechime) override;
     Abonament* clone() const override;
-
     static int getNumarAbonamentePremium();
 
 

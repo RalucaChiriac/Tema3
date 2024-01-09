@@ -10,6 +10,8 @@
 int main()
 {
     auto manager = ManagerClienti::getInstance();
+    auto factory = std::make_shared<AbonamentFactory>();
+    manager->setAbonamentFactory(factory);
 
     int optiune;
     do

@@ -11,12 +11,13 @@
 #include "../include/AbonamentManager.h"
 #include "../include/AbonamentFactory.h"
 
-
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
 
-ManagerClienti::ManagerClienti(): abonamentManager(std::make_unique<AbonamentManager>())  {
-    AbonamentFactory* factory = new AbonamentFactory();
-    abonamentManager->setAbonamentFactory(factory);
+ManagerClienti::ManagerClienti(): abonamentManager(std::make_unique<AbonamentManager>()), abonamentFactory(std::make_shared<AbonamentFactory>()) {
+    abonamentManager->setAbonamentFactory(abonamentFactory);
+}
+
+ManagerClienti::~ManagerClienti() {
 }
 
 std::shared_ptr<ManagerClienti> ManagerClienti::getInstance() {
@@ -28,6 +29,10 @@ std::shared_ptr<ManagerClienti> ManagerClienti::getInstance() {
 
 Abonament* ManagerClienti::setAbonament(int tipAbonament, int codClient) {
     return abonamentManager->setAbonament(tipAbonament, codClient);
+}
+
+void ManagerClienti::afiseazaStatistica() const{
+    abonamentManager->afiseazaStatistica();
 }
 
 Abonament* ManagerClienti::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
@@ -137,6 +142,10 @@ void ManagerClienti::reseteazaProgram()
     std::cout << "Programul a fost resetat cu succes.\n";
 }
 
-void ManagerClienti::afiseazaStatistica() const {
-    abonamentManager->afiseazaStatistica();
+void ManagerClienti::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
+    abonamentManager->setAbonamentFactory(factory);
+}
+
+void ManagerClienti::setAbonamentManager(std::shared_ptr<AbonamentManager> manager) {
+    abonamentManager = manager;
 }

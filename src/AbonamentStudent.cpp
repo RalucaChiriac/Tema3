@@ -1,18 +1,18 @@
 #include "../include/AbonamentStudent.h"
 
-int AbonamentStudent::numarAbonamenteStudent = 0;
+template<> int Counter<AbonamentStudent>::count = 0;
 
 AbonamentStudent::AbonamentStudent(float baza, int idClient, int numarLegitimatie)
     : Abonament(baza, idClient), numarLegitimatie(numarLegitimatie) {
     if (numarLegitimatie> 1000) {
         throw ExceptieNumar();
     }
-    ++numarAbonamenteStudent;
+    Counter<AbonamentStudent>::increment();
 }
 
 AbonamentStudent::AbonamentStudent(const AbonamentStudent& other)
     : Abonament(other), numarLegitimatie(other.numarLegitimatie) {
-    ++numarAbonamenteStudent;
+    Counter<AbonamentStudent>::increment();
 }
 
 AbonamentStudent& AbonamentStudent::operator=(const AbonamentStudent& other) {
@@ -24,7 +24,8 @@ AbonamentStudent& AbonamentStudent::operator=(const AbonamentStudent& other) {
 }
 
 AbonamentStudent::~AbonamentStudent() {
-    --numarAbonamenteStudent;
+    Counter<AbonamentStudent>::decrement();
+;
 }
 
 void AbonamentStudent::afisareDetalii() const {
@@ -56,5 +57,5 @@ void AbonamentStudent::afisareTip() const
 }
 
 int AbonamentStudent::getNumarAbonamenteStudent() {
-    return numarAbonamenteStudent;
+    return Counter<AbonamentStudent>::getCount();
 }

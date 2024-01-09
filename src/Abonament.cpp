@@ -1,22 +1,21 @@
+
 #include "../include/Abonament.h"
 #include "../include/ManagerClienti.h"
 
-int Abonament::numarAbonamente = 0;
+template<> int Counter<Abonament>::count = 0;
 
-Abonament::Abonament(float baza, int idClient) : baza(baza), idClient(idClient), pret(0.0){
-    if (baza < 0)
-    {
+Abonament::Abonament(float baza, int idClient) : baza(baza), idClient(idClient), pret(0.0) {
+    if (baza < 0) {
         throw ExceptieNumar();
     }
-    if (idClient < 0)
-    {
+    if (idClient < 0) {
         throw ExceptieNumar();
     }
-    numarAbonamente++;
+    Counter<Abonament>::increment();
 }
 
 Abonament::Abonament(const Abonament& other) : baza(other.baza), idClient(other.idClient), manager(other.manager), pret(other.pret) {
-    numarAbonamente++;
+    Counter<Abonament>::increment();
 }
 
 Abonament& Abonament::operator=(const Abonament& other) {
@@ -29,27 +28,22 @@ Abonament& Abonament::operator=(const Abonament& other) {
 }
 
 Abonament::~Abonament() {
-    numarAbonamente--;
+    Counter<Abonament>::decrement();
 }
 
 float Abonament::getVechime(int codClient) {
-
     if (auto man = manager.lock())
         return man->findClient(codClient).getVechime();
-    else
-    {
+    else {
         throw ExceptieManagerInexistent();
     }
-
 }
 
-int Abonament::getter_AbonamenteTotale()
-{
-    return numarAbonamente;
+int Abonament::getter_AbonamenteTotale() {
+    return Counter<Abonament>::getCount();
 }
 
-void Abonament::setter_manager(std::shared_ptr<ManagerClienti> man)
-{
-   std::weak_ptr<ManagerClienti> my_ptr = man;
-   manager = my_ptr;
+void Abonament::setter_manager(std::shared_ptr<ManagerClienti> man) {
+    std::weak_ptr<ManagerClienti> my_ptr = man;
+    manager = my_ptr;
 }

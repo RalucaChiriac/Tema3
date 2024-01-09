@@ -1,17 +1,17 @@
 #include "../include/AbonamentPremium.h"
 
-int AbonamentPremium::numarAbonamentePremium = 0;
+template<> int Counter<AbonamentPremium>::count = 0;
 
 AbonamentPremium::AbonamentPremium(float baza, int idClient, bool serviciuSupport)
     : Abonament(baza, idClient), serviciuSupport(serviciuSupport)
 {
-    ++numarAbonamentePremium;
+    Counter<AbonamentPremium>::increment();
 }
 
 AbonamentPremium::AbonamentPremium(const AbonamentPremium& other)
     : Abonament(other), serviciuSupport(other.serviciuSupport)
 {
-    ++numarAbonamentePremium;
+    Counter<AbonamentPremium>::increment();
 }
 
 AbonamentPremium& AbonamentPremium::operator=(const AbonamentPremium& other)
@@ -26,7 +26,7 @@ AbonamentPremium& AbonamentPremium::operator=(const AbonamentPremium& other)
 
 AbonamentPremium::~AbonamentPremium()
 {
-    --numarAbonamentePremium;
+    Counter<AbonamentPremium>::decrement();
 }
 
 void AbonamentPremium::afisareDetalii() const
@@ -59,7 +59,7 @@ Abonament* AbonamentPremium::clone() const
 
 int AbonamentPremium::getNumarAbonamentePremium()
 {
-    return numarAbonamentePremium;
+    return Counter<AbonamentPremium>::getCount();
 }
 
 void AbonamentPremium::afisareTip() const

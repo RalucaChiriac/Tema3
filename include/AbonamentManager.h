@@ -1,21 +1,19 @@
-// AbonamentManager.h
 
 #ifndef ABONAMENTMANAGER_H_INCLUDED
 #define ABONAMENTMANAGER_H_INCLUDED
 
-#include <memory>  // Include the necessary headers for std::shared_ptr
+#include <memory>
 
-class Abonament;  // Forward declaration
-class AbonamentFactory;  // Forward declaration
-class ManagerClienti;  // Forward declaration
+#include "Abonament.h"
+#include "AbonamentFactory.h"
 
 class AbonamentManager {
 private:
-    AbonamentFactory* abonamentFactory;
+    std::shared_ptr<AbonamentFactory> abonamentFactory;
 
 public:
-    AbonamentManager();  // Declare the constructor
-    void setAbonamentFactory(AbonamentFactory* factory);  // Declare the setter method
+    AbonamentManager();
+    void setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory);
     void afiseazaStatistica() const;
     Abonament* setAbonament(int tipAbonament, int codClient);
     Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);

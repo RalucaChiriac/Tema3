@@ -1,15 +1,14 @@
 #include "../include/AbonamentSimplu.h"
-#include "../include/Abonament.h"
 
-int AbonamentSimplu::numarAbonamenteSimplu = 0;
+template<> int Counter<AbonamentSimplu>::count = 0;
 
 AbonamentSimplu::AbonamentSimplu(float baza, int idClient) : Abonament(baza, idClient) {
-    numarAbonamenteSimplu++;
+    Counter<AbonamentSimplu>::increment();
 }
 
 AbonamentSimplu::AbonamentSimplu(const AbonamentSimplu& other)
     : Abonament(other) {
-    ++numarAbonamenteSimplu;
+    Counter<AbonamentSimplu>::increment();
 }
 
 AbonamentSimplu& AbonamentSimplu::operator=(const AbonamentSimplu& other) {
@@ -20,7 +19,7 @@ AbonamentSimplu& AbonamentSimplu::operator=(const AbonamentSimplu& other) {
 }
 
 AbonamentSimplu::~AbonamentSimplu() {
-    --numarAbonamenteSimplu;
+    Counter<AbonamentSimplu>::decrement();
 }
 
 
@@ -47,5 +46,5 @@ void AbonamentSimplu::afisareTip() const
 }
 
 int AbonamentSimplu::getNumarAbonamenteSimplu() {
-    return numarAbonamenteSimplu;
+    return Counter<AbonamentSimplu>::getCount();
 }

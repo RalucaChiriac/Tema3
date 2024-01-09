@@ -1,3 +1,5 @@
+// AbonamentManager.cpp
+
 #include "../include/AbonamentManager.h"
 #include "../include/AbonamentFactory.h"
 #include "../include/AbonamentSimplu.h"
@@ -7,7 +9,7 @@
 
 AbonamentManager::AbonamentManager() : abonamentFactory(nullptr) {}
 
-void AbonamentManager::setAbonamentFactory(AbonamentFactory* factory) {
+void AbonamentManager::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
     abonamentFactory = factory;
 }
 
@@ -24,6 +26,7 @@ Abonament* AbonamentManager::setAbonament(int tipAbonament, int codClient) {
     if (abonamentFactory) {
         return abonamentFactory->createAbonament(tipAbonament, codClient);
     } else {
+        // Handle the case where the factory is not set
         throw std::runtime_error("AbonamentFactory not set");
     }
 }
@@ -41,6 +44,7 @@ Abonament* AbonamentManager::setAbonament(int codClient, float vechime, std::sha
 
         return abonament;
     } else {
+        // Handle the case where the factory is not set
         throw std::runtime_error("AbonamentFactory not set");
     }
 }

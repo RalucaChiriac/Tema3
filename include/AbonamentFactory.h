@@ -1,8 +1,12 @@
 #ifndef ABONAMENTFACTORY_H_INCLUDED
 #define ABONAMENTFACTORY_H_INCLUDED
 
+#include <memory>
+
 #include "Abonament.h"
-#include "ManagerClienti.h"
+#include "AbonamentSimplu.h"
+#include "AbonamentPremium.h"
+#include "AbonamentStudent.h"
 
 class AbonamentFactory {
 public:
