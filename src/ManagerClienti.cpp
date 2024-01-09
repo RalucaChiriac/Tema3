@@ -13,7 +13,7 @@
 
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
 
-ManagerClienti::ManagerClienti(): abonamentManager(std::make_unique<AbonamentManager>()), abonamentFactory(std::make_shared<AbonamentFactory>()) {
+ManagerClienti::ManagerClienti(): abonamentFactory(std::make_shared<AbonamentFactory>()), abonamentManager(std::make_unique<AbonamentManager>()) {
     abonamentManager->setAbonamentFactory(abonamentFactory);
 }
 
@@ -144,8 +144,4 @@ void ManagerClienti::reseteazaProgram()
 
 void ManagerClienti::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
     abonamentManager->setAbonamentFactory(factory);
-}
-
-void ManagerClienti::setAbonamentManager(std::shared_ptr<AbonamentManager> manager) {
-    abonamentManager = manager;
 }
