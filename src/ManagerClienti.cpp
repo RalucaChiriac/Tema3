@@ -7,60 +7,32 @@
 #include "../include/MyExceptions.h"
 #include <iostream>
 #include <algorithm>
+#include "../include/ManagerClienti.h"
+#include "../include/AbonamentManager.h"
+#include "../include/AbonamentFactory.h"
+
 
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
 
-ManagerClienti::ManagerClienti()
-{}
+ManagerClienti::ManagerClienti() {
+    abonamentManager = std::make_unique<AbonamentManager>();
+    AbonamentFactory* factory = new AbonamentFactory();
+    abonamentManager->setAbonamentFactory(factory);
+}
 
-std::shared_ptr<ManagerClienti> ManagerClienti::getInstance()
-{
-    // creaza instanta
-    if (!instance)
-    {
+std::shared_ptr<ManagerClienti> ManagerClienti::getInstance() {
+    if (!instance) {
         instance = std::shared_ptr<ManagerClienti>(new ManagerClienti());
     }
     return instance;
 }
 
-Abonament *setAbonament(int tipAbonament, int codClient)
-{
+Abonament* ManagerClienti::setAbonament(int tipAbonament, int codClient) {
+    return abonamentManager->setAbonament(tipAbonament, codClient);
+}
 
-    Abonament *abonament = nullptr;
-
-    switch (tipAbonament)
-    {
-
-    case 1:
-    {
-        float bazaSimplu = 13.03F;
-        abonament = new AbonamentSimplu(bazaSimplu, codClient);
-        break;
-    }
-    case 2:
-    {
-        float bazaPremium = 21.56F;
-        std::cout << "Doriti Support 24/7 ? Se percepe inca o taxa de 12 lei in plus! Raspuns: DA/NU" << '\n';
-        std::string raspuns;
-        std::cin >> raspuns;
-        if (raspuns == "DA")
-            abonament = new AbonamentPremium(bazaPremium, codClient, true);
-        else
-            abonament = new AbonamentPremium(bazaPremium, codClient, false);
-        break;
-    }
-    case 3:
-    {
-        std::cout << "Introduceti numarul Legitimatiei de Student: ( >0 )";
-        int numar;
-        std::cin >> numar;
-        float bazaStudent = 13.0F;
-        abonament = new AbonamentStudent(bazaStudent, codClient, numar);
-        break;
-    }
-    }
-
-    return abonament;
+Abonament* ManagerClienti::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
+    return abonamentManager->setAbonament(codClient, vechime, manager);
 }
 
 void ManagerClienti::afiseazaMeniu() const
@@ -90,14 +62,7 @@ void ManagerClienti::adaugaClient()
     float vechime;
     std::cin >> vechime;
 
-    std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student): ";
-    int tipAbonament;
-    std::cin >> tipAbonament;
-
-    Abonament *abonament = setAbonament(tipAbonament, codClient);
-
-    abonament->setter_manager(shared_from_this());
-    abonament->calculeazaPret(vechime);
+    Abonament *abonament = setAbonament(codClient, vechime, shared_from_this());
 
     Client client = Client(numeClient, codClient, abonament, vechime);
     delete abonament;
@@ -173,12 +138,6 @@ void ManagerClienti::reseteazaProgram()
     std::cout << "Programul a fost resetat cu succes.\n";
 }
 
-void ManagerClienti::afiseazaStatistica() const
-{
-    std::cout << "   Statistica: "
-              << "\n";
-    std::cout << "Numar total de abonamente: " << Abonament::getter_AbonamenteTotale() << '\n';
-    std::cout << "Numar de abonamente Simple: " << AbonamentSimplu::getNumarAbonamenteSimplu() << '\n';
-    std::cout << "Numar de abonamente Premium: " << AbonamentPremium::getNumarAbonamentePremium() << '\n';
-    std::cout << "Numar de abonamente de Student: " << AbonamentStudent::getNumarAbonamenteStudent() << '\n';
+void ManagerClienti::afiseazaStatistica() const {
+    abonamentManager->afiseazaStatistica();
 }

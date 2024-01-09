@@ -5,22 +5,7 @@
 #include <string>
 #include <vector>
 
-class MyExceptions {
-private:
-    std::string exceptionType;
-    std::string message;
-    std::string value;
 
-public:
-    MyExceptions(std::string exceptionType, std::string message, std::string value);
-
-    void badTypeIntegerException(std::string input);
-    void vectorLengthException(int input);
-    void negativeValueException(int input);
-    void acceptedInputException(std::string input, std::vector<std::string> expectedValues, int numOfExpectedValues);
-    void outOfBoundsException(int position, int vectorLength, int startIndex);
-    std::string getException();
-};
 
 
 class ExceptieGenerala : public std::exception

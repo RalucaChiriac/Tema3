@@ -1,19 +1,23 @@
+
 #ifndef MANAGERCLIENTI_H_INCLUDED
 #define MANAGERCLIENTI_H_INCLUDED
 
-#include "Client.h"
+#include <iostream>
 #include <vector>
 #include <memory>
+#include "Client.h"
+#include "MyExceptions.h"
+#include "AbonamentFactory.h"
+#include "AbonamentManager.h"
 
-class ManagerClienti : public std::enable_shared_from_this<ManagerClienti>
-{
+class ManagerClienti : public std::enable_shared_from_this<ManagerClienti> {
 private:
     std::vector<Client> clienti;
-
-    // Private constructor to enforce singleton pattern
     ManagerClienti();
-    // Static member variable to hold the single instance
     static std::shared_ptr<ManagerClienti> instance;
+
+    std::shared_ptr<AbonamentFactory> abonamentFactory;
+    std::shared_ptr<AbonamentManager> abonamentManager;
 
 public:
     // Adaugare client cu abonament
@@ -43,6 +47,12 @@ public:
     {}
 
     static std::shared_ptr<ManagerClienti> getInstance();
+
+    void setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory);
+    void setAbonamentManager(std::shared_ptr<AbonamentManager> manager);
+
+    Abonament* setAbonament(int tipAbonament, int codClient);
+    Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);
 
 };
 
