@@ -2,8 +2,9 @@
 #define ABONAMENTPREMIUM_H_INCLUDED
 
 #include "Abonament.h"
+#include "Counter.h"
 
-class AbonamentPremium : public Abonament {
+class AbonamentPremium : public Abonament, public Counter<AbonamentPremium> {
 private:
     bool serviciuSupport;
 
@@ -18,8 +19,6 @@ public:
     void calculeazaPret(float vechime) override;
     Abonament* clone() const override;
     static int getNumarAbonamentePremium();
-
-
 };
 
 #endif // ABONAMENTPREMIUM_H_INCLUDED

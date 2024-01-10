@@ -10,8 +10,6 @@
 int main()
 {
     auto manager = ManagerClienti::getInstance();
-    auto factory = std::make_shared<AbonamentFactory>();
-    manager->setAbonamentFactory(factory);
 
     int optiune;
     do
@@ -76,7 +74,7 @@ int main()
 
             case 5:
             {
-                manager->afiseazaStatistica();
+                AbonamentManager::afiseazaStatistica();
                 break;
             }
 

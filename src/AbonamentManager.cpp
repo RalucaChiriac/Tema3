@@ -1,5 +1,3 @@
-// AbonamentManager.cpp
-
 #include "../include/AbonamentManager.h"
 #include "../include/AbonamentFactory.h"
 #include "../include/AbonamentSimplu.h"
@@ -7,14 +5,9 @@
 #include "../include/AbonamentStudent.h"
 #include "../include/AbonamentPersoanaCuDizabilitati.h"
 
+AbonamentManager::AbonamentManager(){}
 
-AbonamentManager::AbonamentManager() : abonamentFactory(nullptr) {}
-
-void AbonamentManager::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
-    abonamentFactory = factory;
-}
-
-void AbonamentManager::afiseazaStatistica() const {
+void AbonamentManager::afiseazaStatistica() {
     std::cout << "   Statistica: "
               << "\n";
     std::cout << "Numar total de abonamente: " << Abonament::getter_AbonamenteTotale() << '\n';
@@ -24,28 +17,14 @@ void AbonamentManager::afiseazaStatistica() const {
     std::cout << "Numar de abonamente de Persoane cu Dizabilitati: " << AbonamentPersoanaCuDizabilitati::getNumarAbonamentePersoaneCuDizabilitati() << '\n';
 }
 
-Abonament* AbonamentManager::setAbonament(int tipAbonament, int codClient) {
-    if (abonamentFactory) {
-        return abonamentFactory->createAbonament(tipAbonament, codClient);
-    } else {
-        throw std::runtime_error("AbonamentFactory nesetat");
-    }
-}
-
 Abonament* AbonamentManager::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
-    if (abonamentFactory) {
-        std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student / 4. Persoana cu handicap): ";
-        int tipAbonament;
-        std::cin >> tipAbonament;
+    std::cout << "Alegeti tipul de abonament (1. Simplu / 2. Premium / 3. Student / 4. Persoana cu handicap): ";
+    int tipAbonament;
+    std::cin >> tipAbonament;
 
-        Abonament* abonament = abonamentFactory->createAbonament(tipAbonament, codClient);
+    Abonament* abonament = AbonamentFactory::createAbonament(tipAbonament, codClient);
 
-        abonament->setter_manager(manager);
-        abonament->calculeazaPret(vechime);
-
-        return abonament;
-    } else {
-        // Handle the case where the factory is not set
-        throw std::runtime_error("AbonamentFactory not set");
-    }
+    abonament->setter_manager(manager);
+    abonament->calculeazaPret(vechime);
+    return abonament;
 }

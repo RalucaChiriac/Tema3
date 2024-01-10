@@ -1,4 +1,3 @@
-
 #ifndef MANAGERCLIENTI_H_INCLUDED
 #define MANAGERCLIENTI_H_INCLUDED
 
@@ -18,8 +17,8 @@ private:
 
     ManagerClienti();
     static std::shared_ptr<ManagerClienti> instance;
-    std::shared_ptr<AbonamentFactory> abonamentFactory;
-    std::shared_ptr<AbonamentManager> abonamentManager;
+    AbonamentFactory abonamentFactory;
+    AbonamentManager abonamentManager;
 
 public:
     void adaugaClient();
@@ -27,14 +26,12 @@ public:
     void listeazaClienti() const;
     void schimbaAbonament(const std::string& numeClient, int tipAbonament);
     void reseteazaProgram();
-    void afiseazaStatistica() const;
     Client& findClient(int codClient);
     void afiseazaMeniu() const;
     ~ManagerClienti();
 
     static std::shared_ptr<ManagerClienti> getInstance();
-    void setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory);
-    Abonament* setAbonament(int tipAbonament, int codClient);
+    void setAbonamentFactory(AbonamentFactory factory);
     Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);
 };
 

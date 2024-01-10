@@ -1,4 +1,3 @@
-
 #ifndef ABONAMENTMANAGER_H_INCLUDED
 #define ABONAMENTMANAGER_H_INCLUDED
 
@@ -9,14 +8,13 @@
 
 class AbonamentManager {
 private:
-    std::shared_ptr<AbonamentFactory> abonamentFactory;
+    AbonamentFactory abonamentFactory;
 
 public:
     AbonamentManager();
-    void setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory);
-    void afiseazaStatistica() const;
-    Abonament* setAbonament(int tipAbonament, int codClient);
-    Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);
+    static void afiseazaStatistica();
+    static Abonament* setAbonament(int tipAbonament, int codClient);
+    static Abonament* setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager);
 };
 
 #endif // ABONAMENTMANAGER_H_INCLUDED

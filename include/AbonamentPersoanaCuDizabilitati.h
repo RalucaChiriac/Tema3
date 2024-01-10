@@ -2,7 +2,7 @@
 #define ABOANAMENTPERSOANECUDIZABILITATI_H_INCLUDED
 
 #include "Abonament.h"
-
+#include "Counter.h"
 
 enum class GradHandicap
 {
@@ -11,7 +11,7 @@ enum class GradHandicap
     GRAV = 3
 };
 
-class AbonamentPersoanaCuDizabilitati : public Abonament {
+class AbonamentPersoanaCuDizabilitati : public Abonament, public Counter<AbonamentPersoanaCuDizabilitati> {
 private:
     GradHandicap gradHandicap;
 

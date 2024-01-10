@@ -2,8 +2,9 @@
 #define ABONAMENTSIMPLU_H_INCLUDED
 
 #include "Abonament.h"
+#include "Counter.h"
 
-class AbonamentSimplu : public Abonament {
+class AbonamentSimplu : public Abonament, public Counter<AbonamentSimplu> {
 public:
     AbonamentSimplu(float baza, int idClient);
     AbonamentSimplu(const AbonamentSimplu& other);

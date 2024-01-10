@@ -3,16 +3,10 @@
 template<> int Counter<AbonamentPremium>::count = 0;
 
 AbonamentPremium::AbonamentPremium(float baza, int idClient, bool serviciuSupport)
-    : Abonament(baza, idClient), serviciuSupport(serviciuSupport)
-{
-    Counter<AbonamentPremium>::increment();
-}
+    : Abonament(baza, idClient), serviciuSupport(serviciuSupport){}
 
 AbonamentPremium::AbonamentPremium(const AbonamentPremium& other)
-    : Abonament(other), serviciuSupport(other.serviciuSupport)
-{
-    Counter<AbonamentPremium>::increment();
-}
+    : Abonament(other), serviciuSupport(other.serviciuSupport){}
 
 AbonamentPremium& AbonamentPremium::operator=(const AbonamentPremium& other)
 {
@@ -24,10 +18,7 @@ AbonamentPremium& AbonamentPremium::operator=(const AbonamentPremium& other)
     return *this;
 }
 
-AbonamentPremium::~AbonamentPremium()
-{
-    Counter<AbonamentPremium>::decrement();
-}
+AbonamentPremium::~AbonamentPremium(){}
 
 void AbonamentPremium::afisareDetalii() const
 {

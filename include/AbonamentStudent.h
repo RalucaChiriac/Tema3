@@ -2,8 +2,9 @@
 #define ABONAMENTSTUDENT_H_INCLUDED
 
 #include "Abonament.h"
+#include "Counter.h"
 
-class AbonamentStudent : public Abonament {
+class AbonamentStudent : public Abonament, public Counter<AbonamentStudent> {
 private:
     int numarLegitimatie;
 

@@ -3,16 +3,10 @@
 template<> int Counter<AbonamentPersoanaCuDizabilitati>::count = 0;
 
 AbonamentPersoanaCuDizabilitati::AbonamentPersoanaCuDizabilitati(float baza, int idClient, GradHandicap gradHandicap)
-    : Abonament(baza, idClient), gradHandicap(gradHandicap)
-{
-    Counter<AbonamentPersoanaCuDizabilitati>::increment();
-}
+    : Abonament(baza, idClient), gradHandicap(gradHandicap){}
 
 AbonamentPersoanaCuDizabilitati::AbonamentPersoanaCuDizabilitati(const AbonamentPersoanaCuDizabilitati& other)
-    : Abonament(other), gradHandicap(other.gradHandicap)
-{
-    Counter<AbonamentPersoanaCuDizabilitati>::increment();
-}
+    : Abonament(other), gradHandicap(other.gradHandicap){}
 
 AbonamentPersoanaCuDizabilitati& AbonamentPersoanaCuDizabilitati::operator=(const AbonamentPersoanaCuDizabilitati& other)
 {
@@ -24,10 +18,7 @@ AbonamentPersoanaCuDizabilitati& AbonamentPersoanaCuDizabilitati::operator=(cons
     return *this;
 }
 
-AbonamentPersoanaCuDizabilitati::~AbonamentPersoanaCuDizabilitati()
-{
-    Counter<AbonamentPersoanaCuDizabilitati>::decrement();
-}
+AbonamentPersoanaCuDizabilitati::~AbonamentPersoanaCuDizabilitati(){}
 
 void AbonamentPersoanaCuDizabilitati::afisareDetalii() const
 {

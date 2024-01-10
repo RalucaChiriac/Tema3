@@ -7,13 +7,10 @@ AbonamentStudent::AbonamentStudent(float baza, int idClient, int numarLegitimati
     if (numarLegitimatie> 1000) {
         throw ExceptieNumar();
     }
-    Counter<AbonamentStudent>::increment();
 }
 
 AbonamentStudent::AbonamentStudent(const AbonamentStudent& other)
-    : Abonament(other), numarLegitimatie(other.numarLegitimatie) {
-    Counter<AbonamentStudent>::increment();
-}
+    : Abonament(other), numarLegitimatie(other.numarLegitimatie) {}
 
 AbonamentStudent& AbonamentStudent::operator=(const AbonamentStudent& other) {
     if (this != &other) {
@@ -23,10 +20,7 @@ AbonamentStudent& AbonamentStudent::operator=(const AbonamentStudent& other) {
     return *this;
 }
 
-AbonamentStudent::~AbonamentStudent() {
-    Counter<AbonamentStudent>::decrement();
-;
-}
+AbonamentStudent::~AbonamentStudent() {}
 
 void AbonamentStudent::afisareDetalii() const {
     afisareTip();

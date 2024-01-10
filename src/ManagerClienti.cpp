@@ -12,15 +12,8 @@
 #include "../include/AbonamentManager.h"
 #include "../include/AbonamentFactory.h"
 
-// Initialize the static member variable with nullptr
 std::shared_ptr<ManagerClienti> ManagerClienti::instance = nullptr;
-
-ManagerClienti::ManagerClienti(): abonamentFactory(std::make_shared<AbonamentFactory>()), abonamentManager(std::make_unique<AbonamentManager>()) {
-    abonamentManager->setAbonamentFactory(abonamentFactory);
-}
-
-ManagerClienti::~ManagerClienti() {
-}
+ManagerClienti::ManagerClienti(){}
 
 std::shared_ptr<ManagerClienti> ManagerClienti::getInstance() {
     if (!instance) {
@@ -29,16 +22,8 @@ std::shared_ptr<ManagerClienti> ManagerClienti::getInstance() {
     return instance;
 }
 
-Abonament* ManagerClienti::setAbonament(int tipAbonament, int codClient) {
-    return abonamentManager->setAbonament(tipAbonament, codClient);
-}
-
-void ManagerClienti::afiseazaStatistica() const{
-    abonamentManager->afiseazaStatistica();
-}
-
 Abonament* ManagerClienti::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
-    return abonamentManager->setAbonament(codClient, vechime, manager);
+    return AbonamentManager::setAbonament(codClient, vechime, manager);
 }
 
 void ManagerClienti::afiseazaMeniu() const
@@ -124,7 +109,7 @@ void ManagerClienti::schimbaAbonament(const std::string &numeClient, int tipAbon
     {
         if (client.getNume() == numeClient)
         {
-            Abonament *abonament = setAbonament(tipAbonament, client.getId());
+            Abonament *abonament = AbonamentFactory::createAbonament(tipAbonament, client.getId());
 
             abonament->setter_manager(shared_from_this());
             abonament->calculeazaPret(client.getVechime());
@@ -144,6 +129,4 @@ void ManagerClienti::reseteazaProgram()
     std::cout << "Programul a fost resetat cu succes.\n";
 }
 
-void ManagerClienti::setAbonamentFactory(std::shared_ptr<AbonamentFactory> factory) {
-    abonamentManager->setAbonamentFactory(factory);
-}
+ManagerClienti::~ManagerClienti() {}

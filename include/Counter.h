@@ -11,7 +11,7 @@ public:
         count++;
     }
 
-    ~Counter() {
+    virtual ~Counter() {
         count--;
     }
 

@@ -8,7 +8,7 @@
 
 class ManagerClienti;
 
-class Abonament {
+class Abonament : public Counter<Abonament> {
 protected:
     float baza;
     int idClient;
@@ -33,7 +33,7 @@ public:
 
     static int getter_AbonamenteTotale();
     float getVechime(int codClient);
-    void setter_manager (std::shared_ptr<ManagerClienti> man);
+    void setter_manager(std::shared_ptr<ManagerClienti> man);
 };
 
 #endif // ABONAMENT_H_INCLUDED

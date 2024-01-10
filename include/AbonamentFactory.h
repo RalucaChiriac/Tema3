@@ -10,7 +10,7 @@
 
 class AbonamentFactory {
 public:
-    Abonament* createAbonament(int tipAbonament, int codClient);
+    static Abonament* createAbonament(int tipAbonament, int codClient);
 };
 
 #endif // ABONAMENTFACTORY_H_INCLUDED

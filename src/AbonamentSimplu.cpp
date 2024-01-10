@@ -2,14 +2,10 @@
 
 template<> int Counter<AbonamentSimplu>::count = 0;
 
-AbonamentSimplu::AbonamentSimplu(float baza, int idClient) : Abonament(baza, idClient) {
-    Counter<AbonamentSimplu>::increment();
-}
+AbonamentSimplu::AbonamentSimplu(float baza, int idClient) : Abonament(baza, idClient) {}
 
 AbonamentSimplu::AbonamentSimplu(const AbonamentSimplu& other)
-    : Abonament(other) {
-    Counter<AbonamentSimplu>::increment();
-}
+    : Abonament(other) {}
 
 AbonamentSimplu& AbonamentSimplu::operator=(const AbonamentSimplu& other) {
     if (this != &other) {
@@ -18,9 +14,7 @@ AbonamentSimplu& AbonamentSimplu::operator=(const AbonamentSimplu& other) {
     return *this;
 }
 
-AbonamentSimplu::~AbonamentSimplu() {
-    Counter<AbonamentSimplu>::decrement();
-}
+AbonamentSimplu::~AbonamentSimplu() {}
 
 
 void AbonamentSimplu::afisareDetalii() const {
