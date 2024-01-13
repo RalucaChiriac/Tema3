@@ -1,10 +1,11 @@
 #ifndef COUNTER_H_INCLUDED
 #define COUNTER_H_INCLUDED
 
+
 template <typename T>
 class Counter {
 private:
-    static int count;
+    inline static int count;
 
 public:
     Counter() {
@@ -27,5 +28,6 @@ public:
         count++;
     }
 };
+
 
 #endif // COUNTER_H_INCLUDED

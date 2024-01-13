@@ -6,20 +6,6 @@
 #include "../include/AbonamentPersoanaCuDizabilitati.h"
 #include "../include/Counter.h"
 
-template<>
-int Counter<AbonamentSimplu>::count = 0;
-
-template<>
-int Counter<Abonament>::count = 0;
-
-template<>
-int Counter<AbonamentPremium>::count = 0;
-
-template<>
-int Counter<AbonamentStudent>::count = 0;
-
-template<>
-int Counter<AbonamentPersoanaCuDizabilitati>::count = 0;
 
 AbonamentManager::AbonamentManager(){}
 
