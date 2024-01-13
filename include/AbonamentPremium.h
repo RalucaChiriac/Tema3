@@ -18,7 +18,6 @@ public:
     void afisareTip() const override;
     void calculeazaPret(float vechime) override;
     Abonament* clone() const override;
-    static int getNumarAbonamentePremium();
 };
 
 #endif // ABONAMENTPREMIUM_H_INCLUDED

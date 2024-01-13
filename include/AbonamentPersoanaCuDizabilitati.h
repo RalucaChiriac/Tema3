@@ -25,9 +25,6 @@ public:
     void afisareTip() const override;
     void calculeazaPret(float vechime) override;
     Abonament* clone() const override;
-    static int getNumarAbonamentePersoaneCuDizabilitati();
-
-
 };
 
 #endif // ABOANAMENTPERSOANECUDIZABILITATI_H_INCLUDED

@@ -28,8 +28,4 @@ public:
     }
 };
 
-// Initialize the count to 0
-template <typename T>
-int Counter<T>::count = 0;
-
 #endif // COUNTER_H_INCLUDED

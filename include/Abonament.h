@@ -30,8 +30,6 @@ public:
 
     virtual void calculeazaPret(float vechime = -1) = 0;
     virtual Abonament* clone() const = 0;
-
-    static int getter_AbonamenteTotale();
     float getVechime(int codClient);
     void setter_manager(std::shared_ptr<ManagerClienti> man);
 };

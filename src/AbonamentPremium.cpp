@@ -1,7 +1,5 @@
 #include "../include/AbonamentPremium.h"
 
-template<> int Counter<AbonamentPremium>::count = 0;
-
 AbonamentPremium::AbonamentPremium(float baza, int idClient, bool serviciuSupport)
     : Abonament(baza, idClient), serviciuSupport(serviciuSupport){}
 
@@ -46,11 +44,6 @@ void AbonamentPremium::calculeazaPret(float vechime = -1000000.0121F)
 Abonament* AbonamentPremium::clone() const
 {
     return new AbonamentPremium(*this);
-}
-
-int AbonamentPremium::getNumarAbonamentePremium()
-{
-    return Counter<AbonamentPremium>::getCount();
 }
 
 void AbonamentPremium::afisareTip() const

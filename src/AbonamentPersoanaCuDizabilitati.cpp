@@ -1,6 +1,5 @@
 #include "../include/AbonamentPersoanaCuDizabilitati.h"
 
-template<> int Counter<AbonamentPersoanaCuDizabilitati>::count = 0;
 
 AbonamentPersoanaCuDizabilitati::AbonamentPersoanaCuDizabilitati(float baza, int idClient, GradHandicap gradHandicap)
     : Abonament(baza, idClient), gradHandicap(gradHandicap){}
@@ -55,11 +54,6 @@ void AbonamentPersoanaCuDizabilitati::calculeazaPret(float vechime = -1000000.01
 Abonament* AbonamentPersoanaCuDizabilitati::clone() const
 {
     return new AbonamentPersoanaCuDizabilitati(*this);
-}
-
-int AbonamentPersoanaCuDizabilitati::getNumarAbonamentePersoaneCuDizabilitati()
-{
-    return Counter<AbonamentPersoanaCuDizabilitati>::getCount();
 }
 
 void AbonamentPersoanaCuDizabilitati::afisareTip() const

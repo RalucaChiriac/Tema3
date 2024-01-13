@@ -35,6 +35,6 @@ Abonament* AbonamentFactory::createAbonament(int tipAbonament, int codClient) {
                 return nullptr;
             }
         default:
-            throw std::runtime_error("Tip de abonament invalid");
+                return nullptr;
     }
 }

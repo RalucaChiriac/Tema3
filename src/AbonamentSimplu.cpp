@@ -1,7 +1,5 @@
 #include "../include/AbonamentSimplu.h"
 
-template<> int Counter<AbonamentSimplu>::count = 0;
-
 AbonamentSimplu::AbonamentSimplu(float baza, int idClient) : Abonament(baza, idClient) {}
 
 AbonamentSimplu::AbonamentSimplu(const AbonamentSimplu& other)
@@ -37,8 +35,4 @@ Abonament* AbonamentSimplu::clone() const {
 void AbonamentSimplu::afisareTip() const
 {
     std::cout<<"Tip: Abonament Simplu"<<std::endl;
-}
-
-int AbonamentSimplu::getNumarAbonamenteSimplu() {
-    return Counter<AbonamentSimplu>::getCount();
 }

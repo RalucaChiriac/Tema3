@@ -1,7 +1,5 @@
 #include "../include/AbonamentStudent.h"
 
-template<> int Counter<AbonamentStudent>::count = 0;
-
 AbonamentStudent::AbonamentStudent(float baza, int idClient, int numarLegitimatie)
     : Abonament(baza, idClient), numarLegitimatie(numarLegitimatie) {
     if (numarLegitimatie> 1000) {
@@ -48,8 +46,4 @@ Abonament* AbonamentStudent::clone() const {
 void AbonamentStudent::afisareTip() const
 {
     std::cout<<"Tip: Abonament Student"<<std::endl;
-}
-
-int AbonamentStudent::getNumarAbonamenteStudent() {
-    return Counter<AbonamentStudent>::getCount();
 }

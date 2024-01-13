@@ -4,17 +4,33 @@
 #include "../include/AbonamentPremium.h"
 #include "../include/AbonamentStudent.h"
 #include "../include/AbonamentPersoanaCuDizabilitati.h"
+#include "../include/Counter.h"
+
+template<>
+int Counter<AbonamentSimplu>::count = 0;
+
+template<>
+int Counter<Abonament>::count = 0;
+
+template<>
+int Counter<AbonamentPremium>::count = 0;
+
+template<>
+int Counter<AbonamentStudent>::count = 0;
+
+template<>
+int Counter<AbonamentPersoanaCuDizabilitati>::count = 0;
 
 AbonamentManager::AbonamentManager(){}
 
 void AbonamentManager::afiseazaStatistica() {
     std::cout << "   Statistica: "
               << "\n";
-    std::cout << "Numar total de abonamente: " << Abonament::getter_AbonamenteTotale() << '\n';
-    std::cout << "Numar de abonamente Simple: " << AbonamentSimplu::getNumarAbonamenteSimplu() << '\n';
-    std::cout << "Numar de abonamente Premium: " << AbonamentPremium::getNumarAbonamentePremium() << '\n';
-    std::cout << "Numar de abonamente de Student: " << AbonamentStudent::getNumarAbonamenteStudent() << '\n';
-    std::cout << "Numar de abonamente de Persoane cu Dizabilitati: " << AbonamentPersoanaCuDizabilitati::getNumarAbonamentePersoaneCuDizabilitati() << '\n';
+    std::cout << "Numar total de abonamente: " << Counter<Abonament>::getCount() << '\n';
+    std::cout << "Numar de abonamente Simple: " << Counter<AbonamentSimplu>::getCount() << '\n';
+    std::cout << "Numar de abonamente Premium: " << Counter<AbonamentPremium>::getCount() << '\n';
+    std::cout << "Numar de abonamente de Student: " << Counter<AbonamentStudent>::getCount() << '\n';
+    std::cout << "Numar de abonamente de Persoane cu Dizabilitati: " << Counter<AbonamentPersoanaCuDizabilitati>::getCount() << '\n';
 }
 
 Abonament* AbonamentManager::setAbonament(int codClient, float vechime, std::shared_ptr<ManagerClienti> manager) {
